@@ -1,0 +1,179 @@
+1.搜狗https://blog.csdn.net/areigninhell/article/details/79696751
+2.网易
+卸载libreoffice:https://blog.csdn.net/colin_lisicong/article/details/71075371
+3.IDEA激活：https://blog.csdn.net/q258523454/article/details/79775092
+4.JDK(https://blog.csdn.net/u014796292/article/details/79531047),Git,maven,tomcat
+5.python
+6.sublime text3
+7.eclipse
+8.Chrome
+9.Pycharm
+10.SSR
+11.LAMP
+sudo apt install mysql-workbench
+
+sudo dpkg -i iptux.deb
+sudo apt-get install sublime-text-installer
+更新软件库
+sudo apt update 
+构建依赖关系sudo apt -f install
+
+如果要切换到Python2，执行：
+sudo update-alternatives --config python
+
+sudo apt-get install python3-numpy python3-pandas python3-matplotlib
+
+pip install *** --default-timeout=1000
+
+sudo tar -xzvf file.tar.gz //解压tar.gz
+1. 解压tar.gz命令： tar -zxvf filename.tar.gz -C  指定目录
+2. 解压ta.bz2命令： tar -jxvf filename.tar.bz2
+
+cp复制，mv移动，rm删除
+删除文件夹实例：
+rm -rf /var/log/httpd
+将会删除/var/log/httpd目录以及其下所有文件、文件夹
+
+删除文件使用实例：
+rm -f /var/log/httpd/access.log
+将会强制删除/var/log/httpd/access.log这个文件
+
+sudo mkdir /opt/jvm //新建文件夹
+
+sudo apt-get remove libreoffice-common卸载
+
+查看磁盘空间大小命令
+df -h
+
+菜单栏位置
+放到底部（终端输入以下）： 
+gsettings set com.canonical.Unity.Launcher launcher-position Bottom
+放到左侧（终端输入以下）： 
+gsettings set com.canonical.Unity.Launcher launcher-position Left
+
+配置JDK的环境变量
+sudo gedit /etc/profile
+export JAVA_HOME=/opt/jvm/jdk1.8.0_191
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:＄{JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=＄{JAVA_HOME}/:$PATH 
+重启
+source /etc/profile
+
+配置Maven的环境变量
+export M2_HOME=/opt/apache-maven-3.3.9
+export CLASSPATH=$CLASSPATH:$M2_HOME/lib
+export PATH=$PATH:$M2_HOME/bin
+修改maven源为阿里云，以及仓库默认存放路径(https://blog.csdn.net/qq_24091555/article/details/76039475)
+sudo gedit /opt/apache-maven-3.3.9/conf/settings.xml
+
+tomcat位置：/usr/share
+cd /usr/share/apache-tomcat-8.5.34/bin 
+./startup.sh
+./shutdown.sh
+/usr/share/git-core
+
+mysql
+1.sudo apt-get install mysql-server
+2.apt-get install mysql-client
+3.sudo apt-get install libmysqlclient-dev
+sudo apt-get install mysql-workbench
+
+解决双系统下Ubuntu16.04不能访问Windows分区
+sudo fdisk -l
+需要在查看盘符后记下目标盘符的数字，比如想解除C盘的锁定：
+sudo ntfsfix /dev/sda1
+
+显示当前正在执行的进程
+top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器。
+关闭终端之后继续运行
+需要使用nohup这个命令,比如我们有个test.sh需要在后台运行，并且希望在 后台能够一直运行，那么就使用nohup
+
+nohup ./test.sh &
+强制结束一个进程
+比如如果一个进程的PID为4993
+kill -9 4993
+netstat -alnp | grep 8080
+https://github.com/askme765cs/Wine-QQ-TIM
+
+移除不再需要的软件包sudo apt autoremove
+清理Ubuntu中的APT缓存(sudo du -sh /var/cache/apt)
+对于 APT 缓存我们有两种可选方式对其进行清理，其一为只删除过时的软件包：sudo apt autoclean
+另一种则是清理整个缓存（释放更多的磁盘空间）：sudo apt clean
+清理缩略图缓存(du -sh ~/.cache/thumbnails)
+rm -rf ~/.cache/thumbnails/*
+
+df -a 显示目前在Linux系统上的文件系统的磁盘使用情况统计
+du -sh *
+
+
+Ubuntu 16.04 LAMP
+1.sudo apt-get install mysql-server mysql-client
+2.sudo apt-get install apache2
+sudo service apache2 status/start/stop/restart
+/var/www/html
+Linux下Apache网站目录读写权限的设置
+网站目录文件权限的设置对网站的安全至关重要，下面简单介绍网站目录文件权限的基本设定。
+我们假设http服务器运行的用户和用户组是www-data，网站用户为www-data，网站根目录是/var/www/html
+1我们首先设定网站目录和文件的所有者和所有组为www-data，www-data，如下命令：
+sudo chown -R www-data:www-data /var/www/html
+2设置网站目录权限为750，750是www-data用户对目录拥有读写执行的权限，这样www-data用户可以在任何目录下创建文件，用户组有有读执行权限，这样才能进入目录，其它用户没有任何权限。
+sudo find -type d -exec chmod 750 {} \;
+这样www-data就对html目录拥有可读可执行权限啦
+3.sudo apt-get install php7.0(sudo gedit /etc/php/7.0/apache2/php.ini)
+4.sudo apt-get install libapache2-mod-php7.0
+安装PhpMyAdmin
+https://blog.csdn.net/l6807718/article/details/51374915
+
+
+Emmet
+JsFormat(Ctrl+Alt+F)
+SideBarEnhancements
+TrailingSpaces(高亮显示多余的空格和Tab)
+SublimeCodeIntel(代码提示)
+All Autocomplete
+python:Anaconda
+
+
+TLP - Linux 高级电源管理
+sudo apt install tlp
+sudo tlp start
+TLP 会在下次启动系统时自动运行
+配置文件:/etc/default/tlp
+
+Ubuntu下更改用户名和主机名
+https://www.cnblogs.com/zeusmyth/p/6231350.html
+
+
+
+
+使用cmake编译（CMake version >= 2.8.7）：
+首先定位到caffe文件夹内。之后：
+mkdir build
+cd build
+cmake ..
+make all
+make install
+make runtest
+make pycaffe
+
+在Python程序最前面加上以下语句：
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+将默认编码设置为utf-8
+
+Ubuntu关机重启卡死在关机动画界面
+关闭关机动画：
+$ sudo vim /etc/default/grub
+将GRUB_CMDLINE_LINUX_DEFAULT=”quiet splash”改成GRUB_CMDLINE_LINUX_DEFAULT=” “
+执行sudo update-grub使其生效：
+$ sudo update-grub
+重启后即可正常关机重启
+
+sudo tar zcvf SSH.tar.gz SSH/
+
+sudo apt-get install openssh-server
+ssh -p 27028  root@96.45.191.145
+

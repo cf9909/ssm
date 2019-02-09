@@ -1,0 +1,128 @@
+    /**
+     * 新建一个筛查信息录入
+     * @param httpSession
+     * @param model
+     * @param redirectAttributes
+     */
+    @RequestMapping(value = "AF/getQuestion")
+    public String getQuestion(HttpSession httpSession,Model model,RedirectAttributes redirectAttributes){
+        if(httpSession.getAttribute("uid")==null)
+            return "redirect:login";
+        model.addAttribute("uid",httpSession.getAttribute("uid"));
+        String id= (String) httpSession.getAttribute("uid");
+        SysUser_Info sysUser_info=sysUserInfoService.selectById(id);
+        if (sysUser_info!=null) {
+            model.addAttribute("uname",sysUser_info.getUser_name());
+
+
+            HashMap<String,Object> map=new HashMap<>();
+
+
+            Question question;
+            map.put("db_seq","");
+            EntityWrapper<Question> ew2=new EntityWrapper<>();
+            try {
+                ew2.where("gather_date={0}",df.parse(JsonTimeUtil.toDateJSONString(new Date()))).orderBy("db_seq",false).limit(0,1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            question=questionService.selectOne(ew2);
+            HashMap<String,Object> base_info=new HashMap<>();
+            base_info.put("gatherer_name",sysUser_info.getUser_name());
+            map.put("base_info",base_info);
+            map.put("gather_date",JsonTimeUtil.toDateJSONString(new Date()));
+
+
+            model.addAttribute("jsonstr", JSON.toJSONString(map));
+            return "AF/questionnaire";
+
+
+        else{
+            redirectAttributes.addFlashAttribute("tip","系统中没有此用户信息");
+            return "redirect:/tips";
+        }
+    }
+
+
+Java
+    JSON.parseObject，是将Json字符串转化为相应的对象；
+    JSON.toJSONString则是将对象转化为Json字符串。
+
+JavaScript 
+    JSON.stringify()
+    用于将 JavaScript 值转换为 JSON 字符串。
+
+
+e.g.
+    <script>
+    var str = {"name":"菜鸟教程", "site":"http://www.runoob.com"}
+    document.write(str);                    //运行结果  [object Object]
+    document.write(JSON.stringify(str));    //运行结果  {"name":"菜鸟教程","site":"http://www.runoob.com"}
+    </script>
+
+
+
+    function CheckName(){        //判断患者是否在数据库中
+        var sex;
+        $("input[name='pat_sex']").each(function(i,v){
+            if($(v).parent().prop("class")=="checked")
+                sex= v.value;
+        })
+        console.log("提交");
+        if($("#pat_name").val()!=null&&$("#pat_name").val()!=""&&$("#birthday").val()!=null&&$("#birthday").val()!=""){
+
+
+            var jsonStr={name:$("#pat_name").val(),sex:sex,birthday:$("#birthday").val()}
+
+
+            console.log(jsonStr);
+            $.ajax({
+                type:"POST",
+                url:"${path}/AF/getNameMessage",
+
+
+                data:JSON.stringify(jsonStr),
+
+
+                datatype: "json",
+                contentType: "application/json",
+                success:function(msg){
+                    console.log(msg);
+                    if(msg.message=="1"){
+                        $("#myModal").modal("show");
+                    }
+                }
+            })
+        }
+    }
+
+
+
+    /**
+     * 判断参数中的患者是否存在数据库中
+     * @param getJson
+     */
+    @RequestMapping(value = "AF/getNameMessage",consumes = {MediaType.APPLICATION_JSON_VALUE},produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},method = RequestMethod.POST)
+    @ResponseBody
+    public String getNameMessage(@RequestBody HashMap<String,Object> getJson){
+        try {
+            HashMap<String,Object>map =new HashMap<>();
+            String Name=getJson.get("name").toString();
+            String Birthday=getJson.get("birthday").toString();
+            String Sex=getJson.get("sex").toString();
+            EntityWrapper<Question> ew=new EntityWrapper<>();
+            ew.where("pat_name={0}",Name).and("birthday={0}",df.parse(Birthday)).and("pat_sex={0}",Sex);
+            Question question=questionService.selectOne(ew);
+            if(question!=null){
+                map.put("name",question.getPat_name());
+                map.put("birth",JsonTimeUtil.toDateJSONString(question.getBirthday()));
+                map.put("sex",question.getPat_sex());
+                return new Apires().message("1").data(map).success();
+            }
+            else if(question==null)
+                return new Apires().message("0").success();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new Apires().fail();
+    }

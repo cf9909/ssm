@@ -1054,3 +1054,11 @@ Bootstrap的官方仓库`twbs/bootstrap`、你在GitHub上克隆的仓库`my/boo
 - 在GitHub上，可以任意Fork开源仓库；
 - 自己拥有Fork后的仓库的读写权限；
 - 可以推送pull request给官方仓库来贡献代码。
+
+
+
+
+
+
+
+git add .  提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
