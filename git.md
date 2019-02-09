@@ -1062,3 +1062,47 @@ Bootstrap的官方仓库`twbs/bootstrap`、你在GitHub上克隆的仓库`my/boo
 
 
 git add .  提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
+
+
+
+
+
+
+
+```
+sudo apt-get install git
+创建一个git用户
+sudo adduser git
+
+创建仓库
+mkdir /home/git/repo
+sudo git init --bare sample.git
+修改仓库所有者
+sudo chown -R git:git sample.git
+
+创建远程仓库管理文件
+mkdir /home/git/.ssh
+sudo touch authorized_key
+导入证书
+
+clone代码
+git clone git@47.107.58.156:/home/git/repo/sample.git
+
+
+
+创建新项目
+
+远程主机上创建版本库
+
+$ cd /home/git/repository
+$ sudo git init --bare demo.git
+$ sudo chown -R git:git demo.git
+
+
+创建本地项目
+git init
+git add .
+git commit -m "first commit"
+git remote add origin git@47.107.58.156:/home/git/repo/demo.git
+git push -u origin master
+```

@@ -177,3 +177,8 @@ sudo tar zcvf SSH.tar.gz SSH/
 sudo apt-get install openssh-server
 ssh -p 27028  root@96.45.191.145
 
+
+ssh root@47.107.58.156
+
+git clone git@47.107.58.156:/home/repo/simple.git
+
