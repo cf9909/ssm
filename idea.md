@@ -35,7 +35,7 @@ RESTful：/user/delete/288
 1. Editor -> Inspections，去掉SQL中SQL dialect detection和No data sources configured
 2. Editor -> Color Schema -> Code -> Injected language fragment，去掉Background
 
-![1548243903287](C:\Users\14601\AppData\Roaming\Typora\typora-user-images\1548243903287.png)
+![1548243903287](./assets/1548243903287.png)
 
 
 

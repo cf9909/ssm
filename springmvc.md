@@ -9,11 +9,9 @@
 </dependency>
 ```
 
-![](C:\Users\14601\Desktop\images\1.JPG)
+![](./assets/1.jpg)
 
-
-
-![](C:\Users\14601\Desktop\images\2.JPG)
+![](./assets/2.jpg)
 
 ## springmvc的依赖
 
@@ -1043,19 +1041,19 @@ contentType:'application/json'
 
    一定记得添加@RequestBody
 
-   ![1547990164315](C:\Users\14601\AppData\Roaming\Typora\typora-user-images\1547990164315.png)
+   ![1547990164315](./assets/1547990164315.png)
 
-
+  
 
    ## 关于form数据提交与Ajax自定义JSON数据提交的区别
 
    form提交方式
 
-   ![1547990290212](C:\Users\14601\AppData\Roaming\Typora\typora-user-images\1547990290212.png)
+   ![1547990290212](./assets/1547990290212.png)
 
    Ajax自定义JSON数据提交方式
 
-   ![1547990164315](C:\Users\14601\AppData\Roaming\Typora\typora-user-images\1547990164315.png)
+   ![1547990164315](./assets/1547990164315.png)
 
    对于form表单提交数据Content-Type: application/x-www-form-urlencoded
 

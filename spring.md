@@ -140,7 +140,7 @@ IOC概念：
 
 ### 容器
 
-![](C:\Users\14601\Desktop\images\container-magic.png)
+![](./assets/container-magic.png)
 
 - pojos：自己定义的这些类
 - metadata：在spring的配置文件里面写的这些就是元数据
